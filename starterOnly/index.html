@@ -57,10 +57,10 @@
           <span class="close"></span>
           <div class="modal-body">
             <form
+            id="formContainer"
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
             >
               <div
                 class="formData">
@@ -88,7 +88,7 @@
                 <label>E-mail</label><br>
                 <input
                   class="text-control"
-                  type="email"
+                  type="text"
                   id="email"
                   name="email"
                 /><br>
@@ -187,7 +187,7 @@
                   id="checkbox1"
                   checked
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="checkbox1">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -206,6 +206,8 @@
                 value="C'est parti"
               />
             </form>
+            <span class="validation-msg">Merci pour votre inscription</span>
+            <button class="button validation-button">Fermer</button>
           </div>
         </div>
       </div>
