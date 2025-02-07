@@ -8,37 +8,39 @@ function editNav() {
 }
 
 // DOM Elements
-// Modal
+// ----- MODAL ELEMENTS -----
 const modalbg = document.querySelector(".bground");
 const closeBtn = document.querySelector(".close");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const modalContent = document.querySelector(".content");
-// Form
+// ----- FORM ELEMENTS -----
 const formData = document.querySelectorAll(".formData");
 const form = document.getElementById("formContainer");
 const validationMsg = document.querySelector(".validation-msg");
 const validationBtn = document.querySelector(".validation-button");
 
 // ----- MODAL OPEN AND CLOSE FUNCTIONS -----
-// launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+closeBtn.addEventListener("click", closeModal);
+validationBtn.addEventListener("click", closeModal);
 
-// launch modal form
+// ----- LAUNCH MODAL FUNCTION -----
 function launchModal() {
   modalbg.style.display = "flex";
   modalbg.style.overflow = "hidden";
-  closeBtn.addEventListener("click", closeModal);
   document.body.classList.add("no-scroll");
   validationBtn.style.display = "none";
   validationMsg.style.display = "none";
 }
 
+// ----- CLOSES MODAL IF BACKGROUND IS CLICKED -----
 modalbg.addEventListener("click", (event) => {
   if (event.target === modalbg) {
     closeModal();
   }
 });
 
+// ----- CLOSE MODAL FUNCTION -----
 function closeModal() {
   modalbg.style.display = "none";
   document.body.classList.remove("no-scroll");
@@ -116,42 +118,39 @@ function validateForm(event) {
   const errorMessages = document.querySelectorAll(".error-message");
   errorMessages.forEach((msg) => msg.remove());
 
-  // for (const field in validationRules) {
-  //   const input = validationRules[field];
-  //   const value = input.element.value.trim();
-  //   let isFieldValid =
-  //     input.regex.test(value) &&
-  //     (!input.customValidation || !input.customValidation(value));
+  for (const field in validationRules) {
+    const input = validationRules[field];
+    const value = input.element.value.trim();
+    let isFieldValid =
+      input.regex.test(value) &&
+      (!input.customValidation || !input.customValidation(value));
 
-  //   if (field === "location") {
-  //     const radioButtons = document.querySelectorAll('input[name="location"]');
-  //     isFieldValid = Array.from(radioButtons).some((radio) => radio.checked);
-  //   }
+    if (field === "location") {
+      const radioButtons = document.querySelectorAll('input[name="location"]');
+      isFieldValid = Array.from(radioButtons).some((radio) => radio.checked);
+    }
 
-  //   if (field === "conditions") {
-  //     const conditionsCheckbox = document.getElementById("checkbox1");
-  //     isFieldValid = conditionsCheckbox.checked;
-  //   }
+    if (field === "conditions") {
+      const conditionsCheckbox = document.getElementById("checkbox1");
+      isFieldValid = conditionsCheckbox.checked;
+    }
 
-  //   if (!isFieldValid) {
-  //     console.log(input.errorMessage);
-  //     isValid = false;
+    if (!isFieldValid) {
+      console.log(input.errorMessage);
+      isValid = false;
 
-  //     const errorSpan = document.createElement("span");
-  //     errorSpan.classList.add("error-message");
-  //     errorSpan.textContent = input.errorMessage;
-  //     input.element.classList.add("invalid");
-  //     input.element.parentNode.appendChild(errorSpan);
-  //   }
-  // }
+      const errorSpan = document.createElement("span");
+      errorSpan.classList.add("error-message");
+      errorSpan.textContent = input.errorMessage;
+      input.element.classList.add("invalid");
+      input.element.parentNode.appendChild(errorSpan);
+    }
+  }
 
   if (isValid) {
+    console.log("Formulaire valide !");
     handleSubmit();
   }
-  // if (isValid) {
-  //   console.log("Formulaire valide !");
-  //   form.submit(handleSubmit(event));
-  // }
 }
 
 form.addEventListener("submit", validateForm);
