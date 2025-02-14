@@ -8,7 +8,52 @@
   margin: 0;
   padding: 0;
 }
+
+button {
+  all: unset;
+}
+
+button:focus {
+  outline: revert;
+}
 /* Landing Page */
+
+.invalid {
+  border: 2px solid #ff4e60;
+}
+
+.error-message {
+  color: #ff4e60;
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 400;
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+.validation-button {
+  position: absolute;
+  bottom: 30px;
+  width: 182px;
+  padding: 11px 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: calc(50% - 91px);
+}
+
+.validation-msg {
+  margin: 331px auto 0 auto;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 51px;
+  width: 100%;
+  max-width: 273px;
+  text-align: center;
+}
 
 body {
   margin: 0;
@@ -35,10 +80,10 @@ img {
   margin: 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
@@ -69,7 +114,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
@@ -77,7 +124,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -89,17 +138,16 @@ img {
     text-align: left;
   }
 }
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -111,8 +159,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -163,28 +209,34 @@ main {
   z-index: 1;
   left: 0;
   top: 0;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
 }
 
 .content {
-  margin: 5% auto;
+  margin: auto auto;
   width: 100%;
   max-width: 500px;
+  height: 100vh;
+  max-height: 850px;
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
   background: #232323;
   border-radius: 10px;
   overflow: hidden;
+  overflow-y: auto;
   position: relative;
   color: #fff;
-  padding-top: 10px;
 }
 
 .modal-body {
-  padding: 15px 8%;
+  position: relative;
+  min-height: calc(100% - 30px);
+  display: flex;
+  flex-direction: column;
+  padding: 15px 38px;
   margin: 15px auto;
 }
 
@@ -226,12 +278,6 @@ input {
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
 }
-/* 
-input[data-error]::after {
-    content: attr(data-error);
-    font-size: 0.4em;
-    color: red;
-} */
 .checkbox-label,
 .checkbox2-label {
   position: relative;
@@ -298,6 +344,7 @@ input[data-error]::after {
 }
 .close {
   position: absolute;
+  z-index: 4;
   right: 15px;
   top: 15px;
   width: 32px;
@@ -526,4 +573,3 @@ footer {
     opacity: 1;
   }
 }
-
