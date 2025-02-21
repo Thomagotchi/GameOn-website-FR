@@ -44,7 +44,6 @@ function closeModal() {
 
 // ----- FORM VALIDATION -----
 const regexLibrary = {
-  // Make more generalised
   nameRegex: /^[a-zA-Zà-ÿÀ-ÿ\s\-]{2,}$/,
   emailRegex: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
   birthdayRegex:
@@ -53,6 +52,7 @@ const regexLibrary = {
   checkboxRegex: /.+/,
 };
 
+// This object groups all the inputs, associates them to a validation method and error message
 const validationRules = {
   firstName: {
     element: document.getElementById("first"),
@@ -92,6 +92,7 @@ const validationRules = {
   },
 };
 
+// This function creates logs the form inputs, resets the inputs and displays the validation message.
 function handleSubmit() {
   const validFormData = new FormData(form);
   const formDataObject = {};
@@ -120,16 +121,19 @@ function validateForm(event) {
       input.regex.test(value) &&
       (!input.customValidation || !input.customValidation(value));
 
+    // Custom validation for the location field
     if (field === "location") {
       const radioButtons = document.querySelectorAll('input[name="location"]');
       isFieldValid = Array.from(radioButtons).some((radio) => radio.checked);
     }
 
+    // Custom validation for the terms and conditions
     if (field === "conditions") {
       const conditionsCheckbox = document.getElementById("checkbox1");
       isFieldValid = conditionsCheckbox.checked;
     }
 
+    // If a field is not valid, this will apply the error styles and display the error message.
     if (!isFieldValid) {
       console.log(input.errorMessage);
       isValid = false;
@@ -139,15 +143,18 @@ function validateForm(event) {
       input.element.classList.add("invalid");
       input.element.parentNode.appendChild(errorSpan);
     }
+    // If the field is valid, this removes the error message and style.
     if (isFieldValid) {
       input.element.classList.remove("invalid");
     }
   }
 
+  // If the form is valid, triggers the submit function 'HandleSubmit'
   if (isValid) {
     console.log("Formulaire valide !");
     handleSubmit();
   }
 }
 
+// Adds the function above to the form
 form.addEventListener("submit", validateForm);
