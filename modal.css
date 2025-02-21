@@ -64,7 +64,6 @@ button:focus {
   border: 0;
 }
 .btn-submit {
-  margin-top: auto !important;
   margin-bottom: 17px !important;
 }
 
@@ -238,10 +237,12 @@ main {
 }
 .modal-body {
   position: relative;
-  min-height: 100%;
+  max-height: 850px;
+  height: calc(100vh - 79px);
   display: flex;
+  overflow-y: scroll;
   flex-direction: column;
-  padding: 49px 38px 0 38px;
+  padding: 49px 38px 17px 38px;
   margin: 0 auto;
 }
 
@@ -467,6 +468,10 @@ footer {
 
 /* ----- RESPONSIVE ----- */
 @media screen and (max-width: 1400px) {
+  .content {
+    height: unset;
+    min-height: 850px;
+  }
   .hero-section {
     margin: 84px 30px 99px 30px;
   }
@@ -542,6 +547,14 @@ footer {
   }
   footer {
     margin: 0 auto 32px auto;
+  }
+}
+@media screen and (max-width: 875px) {
+  .content {
+    border-radius: 10px 10px 0 0;
+  }
+  .terms-conditions > label {
+    margin-bottom: 10px;
   }
 }
 @media screen and (max-width: 768px) {
