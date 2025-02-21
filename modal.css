@@ -240,7 +240,6 @@ main {
   max-height: 850px;
   height: calc(100vh - 79px);
   display: flex;
-  overflow-y: scroll;
   flex-direction: column;
   padding: 49px 38px 17px 38px;
   margin: 0 auto;
@@ -555,6 +554,9 @@ footer {
   }
   .terms-conditions > label {
     margin-bottom: 10px;
+  }
+  .modal-body {
+    overflow-y: auto;
   }
 }
 @media screen and (max-width: 768px) {
