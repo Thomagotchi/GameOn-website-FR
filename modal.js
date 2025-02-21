@@ -33,13 +33,6 @@ function launchModal() {
   validationMsg.style.display = "none";
 }
 
-// ----- CLOSES MODAL IF BACKGROUND IS CLICKED -----
-modalbg.addEventListener("click", (event) => {
-  if (event.target === modalbg) {
-    closeModal();
-  }
-});
-
 // ----- CLOSE MODAL FUNCTION -----
 function closeModal() {
   modalbg.style.display = "none";
@@ -51,10 +44,12 @@ function closeModal() {
 
 // ----- FORM VALIDATION -----
 const regexLibrary = {
+  // Make more generalised
   nameRegex: /^[a-zA-Zà-ÿÀ-ÿ\s\-]{2,}$/,
   emailRegex: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-  birthdayRegex: /^\d{4}-\d{2}-\d{2}$/,
-  numberRegex: /^\d+$/,
+  birthdayRegex:
+    /^(3[01]|[12][0-9]|0?[1-9])(\/|-)(1[0-2]|0?[1-9])\2([0-9]{2})?[0-9]{2}$/,
+  numberRegex: /^-?\d+$/,
   checkboxRegex: /.+/,
 };
 
@@ -83,7 +78,6 @@ const validationRules = {
     element: document.getElementById("quantity"),
     regex: regexLibrary.numberRegex,
     errorMessage: "Nombre de participations invalide",
-    customValidation: (value) => value < 0,
   },
   location: {
     element: document.querySelector('input[name="location"]'),
@@ -105,6 +99,7 @@ function handleSubmit() {
     formDataObject[key] = value;
   });
   console.log(formDataObject);
+  form.reset();
   form.style.display = "none";
   validationBtn.style.display = "flex";
   validationMsg.style.display = "flex";
@@ -138,12 +133,14 @@ function validateForm(event) {
     if (!isFieldValid) {
       console.log(input.errorMessage);
       isValid = false;
-
       const errorSpan = document.createElement("span");
       errorSpan.classList.add("error-message");
       errorSpan.textContent = input.errorMessage;
       input.element.classList.add("invalid");
       input.element.parentNode.appendChild(errorSpan);
+    }
+    if (isFieldValid) {
+      input.element.classList.remove("invalid");
     }
   }
 
