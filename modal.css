@@ -316,6 +316,7 @@ input {
 .checkbox-input:checked + .checkbox-label .checkbox-icon {
   border: 1px solid #279e7a;
 }
+// ----- Here I added the correct green styling for the radio buttons -----
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
   content: "";

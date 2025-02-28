@@ -35,11 +35,16 @@ function launchModal() {
 
 // ----- CLOSE MODAL FUNCTION -----
 function closeModal() {
+  form.reset();
   modalbg.style.display = "none";
   document.body.classList.remove("no-scroll");
   form.style.display = "block";
   validationBtn.style.display = "none";
   validationMsg.style.display = "none";
+  for (const field in validationRules) {
+    // const errorSpan = document.createElement("span");
+    validationRules[field].element.classList.remove("invalid");
+  }
 }
 
 // ----- FORM VALIDATION -----
