@@ -125,6 +125,22 @@ function validateForm(event) {
       input.regex.test(value) &&
       (!input.customValidation || !input.customValidation(value));
 
+    if (field === "birthdate") {
+      let customDateCheck = true;
+      const currentDate = new Date();
+      let currentYear = currentDate.getFullYear();
+
+      const splitInput = value.split("/");
+      let inputDay = splitInput[0];
+      let inputMonth = splitInput[1];
+      let inputYear = splitInput[2];
+
+      inputMonth == 2 && inputDay > 29 ? (customDateCheck = false) : null;
+      inputYear >= currentYear ? (customDateCheck = false) : null;
+
+      isFieldValid = input.regex.test(value) && customDateCheck;
+    }
+
     // Custom validation for the location field
     if (field === "location") {
       const radioButtons = document.querySelectorAll('input[name="location"]');
