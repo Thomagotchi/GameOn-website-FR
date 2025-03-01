@@ -42,7 +42,6 @@ function closeModal() {
   validationBtn.style.display = "none";
   validationMsg.style.display = "none";
   for (const field in validationRules) {
-    // const errorSpan = document.createElement("span");
     validationRules[field].element.classList.remove("invalid");
   }
 }
@@ -140,7 +139,6 @@ function validateForm(event) {
 
     // If a field is not valid, this will apply the error styles and display the error message.
     if (!isFieldValid) {
-      console.log(input.errorMessage);
       isValid = false;
       const errorSpan = document.createElement("span");
       errorSpan.classList.add("error-message");
@@ -156,7 +154,6 @@ function validateForm(event) {
 
   // If the form is valid, triggers the submit function 'HandleSubmit'
   if (isValid) {
-    console.log("Formulaire valide !");
     handleSubmit();
   }
 }
