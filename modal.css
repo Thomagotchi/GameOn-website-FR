@@ -301,7 +301,9 @@ input {
 }
 .checkbox-label .checkbox-icon,
 .checkbox2-label .checkbox-icon {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 20px;
   height: 20px;
   border: 1px solid white;
@@ -316,12 +318,21 @@ input {
 .checkbox-input:checked + .checkbox-label .checkbox-icon {
   border: 1px solid #279e7a;
 }
+.checkbox-input:checked + .checkbox-label .checkbox-icon .circle {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  transition: 300ms ease;
+  background: #279e7a;
+}
+
 // ----- Here I added the correct green styling for the radio buttons -----
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
   content: "";
   width: 13px;
   height: 13px;
+  background-color: white;
   background-color: #279e7a;
   border-radius: 50%;
   text-indent: 29px;
@@ -340,25 +351,30 @@ input {
 .checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
   opacity: 1;
 }
-.checkbox-input:checked + .checkbox2-label .checkbox-icon {
-  background: #279e7a;
+.checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
+  opacity: 1;
 }
 .checkbox2-label .checkbox-icon {
   border-radius: 4px;
   border: 0;
   background: #c4c4c4;
 }
-.checkbox2-label .checkbox-icon::after {
-  width: 7px;
-  height: 4px;
-  border-radius: 2px;
-  background: transparent;
-  border: 2px solid transparent;
-  border-bottom-color: #fff;
-  border-left-color: #fff;
-  transform: rotate(-55deg);
-  left: 21%;
-  top: 19%;
+.checkbox-input:checked + .checkbox-label .checkbox-icon::after,
+.checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
+  opacity: 1;
+}
+.checkbox-input:checked + .checkbox2-label .checkbox-icon {
+  background: #279e7a;
+}
+.checkbox-input:checked + .checkbox2-label .checkbox-icon .circle {
+  position: absolute;
+  top: 1px;
+  height: 14px;
+  width: 8px;
+  border: 2px solid;
+  border-bottom: white;
+  border-right: white;
+  transform: rotate(225deg);
 }
 .close {
   position: absolute;
